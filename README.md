@@ -6,6 +6,11 @@
 
 O **AI Content Optimizer** é um plugin para WordPress desenvolvido com o propósito de ajudar redatores, criadores de conteúdo e administradores de sites a otimizar automaticamente seus textos com base em técnicas modernas de SEO e análise semântica. Ele utiliza inteligência artificial para oferecer sugestões de melhoria diretamente na interface do WordPress.
 
+## Pré-visualização
+
+Você pode visualizar a versão ao vivo da interface do plugin aqui:  
+**[👉 Abrir Visualização ao Vivo](https://pietronapoleao.github.io/ai-content-optimizer/)**
+
 ## Recursos Principais
 
 - Otimização de conteúdo em tempo real com IA
@@ -60,6 +65,11 @@ Documentação disponível em `/index.html` incluída no pacote do plugin.
 
 **AI Content Optimizer** is a WordPress plugin designed to assist writers, content creators, and site administrators in optimizing their texts using modern SEO and semantic analysis techniques. It uses artificial intelligence to provide improvement suggestions directly within the WordPress interface.
 
+### Preview
+
+You can preview the live version of the plugin interface here:  
+**[👉 Open Live Preview](https://pietronapoleao.github.io/ai-content-optimizer/)**
+
 ### Features
 
 - Real-time AI-powered content optimization
@@ -105,3 +115,7 @@ This plugin is distributed under the [GPLv2 or later](https://www.gnu.org/licens
 
 For technical support, contact: `contato@napoleao.site`  
 Documentation is available in the `index.html` file included with the plugin.
+
+---
+
+A professional **WordPress plugin** designed and developed by **Petrocele Napoleão**, crafted to extend WordPress functionality with AI-powered content optimization — built for creators, publishers, and digital marketplaces.
