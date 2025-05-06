@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação - AI Content Optimizer </title>
+    <title>Documentação - AI Content Optimizer - Gemini Only</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
@@ -281,7 +281,8 @@
             font-size: 0.9em;
             color: #777;
         }
-'	/* Responsive iframe container for YouTube */
+
+        /* Responsive iframe container for YouTube */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -331,7 +332,6 @@
                  justify-content: center; /* Center icons on small screens */
             }
         }
-        
     </style>
 </head>
 <body>
@@ -341,7 +341,9 @@
             <h2 style='color:#fff;'>AI Optimizer</h2>
         </a>
         <ul id="documenter_nav">
-	    <li class="lang-pt-BR"><a href="#demo" title="Demonstração">Demonstração</a></li>
+            <li class="lang-pt-BR"><a href="#demo" title="Demonstração">Demonstração</a></li>
+            <li class="lang-en"><a href="#demo" title="Demo">Demo</a></li>
+
             <li class="lang-pt-BR"><a href="#overview" title="Visão Geral">Visão Geral</a></li>
             <li class="lang-pt-BR"><a href="#features" title="Funcionalidades Principais">Funcionalidades Principais</a></li>
             <li class="lang-pt-BR"><a href="#installation" title="Instalação">Instalação</a></li>
@@ -350,8 +352,7 @@
             <li class="lang-pt-BR"><a href="#faq" title="FAQ">FAQ</a></li>
             <li class="lang-pt-BR"><a href="#about-author" title="Sobre o Desenvolvedor">Sobre o Desenvolvedor</a></li>
             <li class="lang-pt-BR"><a href="#support" title="Suporte">Suporte</a></li>
-	    
-	    <li class="lang-en"><a href="#demo" title="Demo">Demo</a></li>
+
             <li class="lang-en"><a href="#overview" title="Overview">Overview</a></li>
             <li class="lang-en"><a href="#features" title="Key Features">Key Features</a></li>
             <li class="lang-en"><a href="#installation" title="Installation">Installation</a></li>
@@ -374,22 +375,24 @@
                 <option value="en">English (EN)</option>
             </select>
         </div>
-	<section id="demo" class="documentation-section">
+
+        <section id="demo" class="documentation-section">
              <div class="lang-pt-BR">
                 <h1>Demonstração</h1>
                 <p>Assista ao vídeo abaixo para uma demonstração rápida de como utilizar o plugin AI Content Optimizer - Gemini Only e suas funcionalidades principais.</p>
                  <div class="video-container">
-                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                     <iframe src="https://pietronapoleao.github.io/ai-content-optimizer/demo.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                  </div>
              </div>
              <div class="lang-en">
                 <h1>Demo</h1>
                 <p>Watch the video below for a quick demonstration of how to use the AI Content Optimizer - Gemini Only plugin and its key features.</p>
                  <div class="video-container">
-                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                     <iframe src="https://pietronapoleao.github.io/ai-content-optimizer/demo.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                  </div>
              </div>
         </section>
+
 
         <section id="overview" class="documentation-section">
              <div class="lang-pt-BR">
@@ -507,7 +510,7 @@
                 </ol>
 
                 <h3>How to obtain a Gemini API Key:</h3>
-                <p>You can obtain a Gemini API key through <a href="https://ai.google.dev/" target="_blank">Google AI for Developers</a>. Follow the instructions in the official Google documentation to generate your key.</p>
+                <p>You can obtain a Gemini API key through <a href="https://ai.google.dev/" target="_blank">Google AI for Developers</a>. Siga as instruções na documentação oficial do Google para gerar sua chave.</p>
             </div>
         </section>
 
@@ -590,11 +593,11 @@
                 <p>Click the <strong class="highlight">🚀 Gemini (<span class="dashicons-example dashicons-visibility"></span>)</strong> button in the "AI Analysis Results" section to open the detailed suggestions modal. This modal offers:</p>
                 <ul>
                     <li><strong>Keyword Suggestions:</strong> A list of suggested keywords. You can click the "Use All Suggested Keywords" button to add them as tags to your post (if the content type supports tags). Applied keywords will be highlighted.</li>
-                    <li><strong>Title Suggestions:</strong> A table with suggested titles, the number of "Searches/month", and a "Use" button to apply the title directly to your post/page/CPT. Applied titles will be highlighted.</li>
-                    <li><strong>Subtitle Suggestions:</strong> A table with suggested subtitles, the number of "Searches/month", and a "Use" button to apply the subtitle. Applied subtitles will be highlighted.</li>
-                    <li><strong>Description Suggestions:</strong> A list of descriptions suggested with a "Use This Description" button to apply the description to the main content of your post/page/CPT. Descriptions that appear to be already in the content will be highlighted (based on a simple check of the first 100 characters).</li>
+                    <li><strong>Title Suggestions:</strong> A table with suggested titles, the number of "Searches/month", and a "Use" button to apply the title directly to your post/page/CPT. Títulos já aplicados serão destacados.</li>
+                    <li><strong>Subtitle Suggestions:</strong> A table with suggested subtitles, the number of "Searches/month", and a "Use" button to apply the subtitle. Subtítulos já aplicados serão destacados.</li>
+                    <li><strong>Description Suggestions:</strong> A list of descriptions suggested with a "Use This Description" button to apply the description to the main content of your post/page/CPT. Descriptions que parecem já estar no conteúdo serão destacadas (basado em uma verificação simples dos primeiros 100 caracteres).</li>
                 </ul>
-                <p>By clicking the "Use" or "Use All Suggested Keywords" buttons, the plugin will make an AJAX request to update your post/page/CPT content in the database.</p>
+                <p>Ao clicar nos botões "Usar" ou "Utilizar Todas as Palavras-chave Sugeridas", o plugin fará uma requisição AJAX para atualizar o conteúdo do seu post/página/CPT no banco de dados.</p>
             </div>
         </section>
 
@@ -716,24 +719,41 @@
                 var activeLang = $('#language-select').val();
                 var $sections = $('#documenter_content section:visible'); // Get only visible sections
 
-                // Find the section closest to the top of the viewport
                 var currentSectionId = null;
-                $sections.each(function() {
-                    var sectionTop = $(this).offset().top;
-                    var sectionBottom = sectionTop + $(this).outerHeight();
 
-                    // If the top of the section is within the buffer from the top of the viewport
-                    // or if the section spans across the top of the viewport
-                    if (sectionTop - buffer <= scrollPos && sectionBottom > scrollPos + buffer) {
-                         currentSectionId = $(this).attr('id');
-                         return false; // Exit the loop once the first matching section is found
-                    }
-                     // If the user is at the very bottom of the page and the last section is visible
-                     if (scrollPos + windowHeight >= $(document).height() && $(this).is($sections.last())) {
-                         currentSectionId = $(this).attr('id');
-                         return false; // Highlight the last section if at the bottom
+                // Find the section whose top is closest to the viewport top
+                // Iterate through sections
+                $sections.each(function() {
+                     var $this = $(this);
+                     var offset = $this.offset();
+
+                     // Check if offset is valid before accessing .top
+                     if (offset && typeof offset.top !== 'undefined') {
+                         var sectionTop = offset.top;
+                         var sectionId = $this.attr('id');
+
+                         // If the top of the section is at or above the current scroll position (with buffer)
+                         if (sectionTop - buffer <= scrollPos) {
+                             currentSectionId = sectionId; // This is the current or a preceding section
+                         } else {
+                             // If the top of the section is below the scroll position (with buffer),
+                             // the previous section found is the one we're in.
+                             // This logic needs to be slightly adjusted to find the *last* one that matches
+                             // Let's continue the loop and the last one that satisfies the condition will be the one.
+                         }
                      }
                 });
+
+                 // After iterating, currentSectionId will hold the ID of the last section
+                 // whose top was above or at the scroll position (with buffer).
+                 // This is the section the user is currently in or has just passed.
+
+                 // If no section top is above scroll (e.g., at the very top before the first section),
+                 // highlight the first section.
+                 if (!currentSectionId && $sections.first().length) {
+                      currentSectionId = $sections.first().attr('id');
+                 }
+
 
                 // If a current section is identified, highlight the corresponding menu item
                 if (currentSectionId) {
@@ -741,13 +761,6 @@
                      $('#documenter_sidebar ul li.' + activeLang + ' a').removeClass('current');
                     // Add 'current' to the current visible link
                      $('#documenter_sidebar ul li.' + activeLang + ' a[href="#' + currentSectionId + '"]').addClass('current');
-                } else {
-                    // If no section is in view (e.g., at the very top before the first section),
-                    // highlight the first menu item.
-                     if (scrollPos < $sections.first().offset().top - buffer) {
-                         $('#documenter_sidebar ul li.' + activeLang + ' a').removeClass('current');
-                         $('#documenter_sidebar ul li.' + activeLang + ':first a').addClass('current');
-                     }
                 }
             });
 
@@ -770,13 +783,21 @@
 
                      // Highlight the corresponding link in the initial language
                      $('#documenter_sidebar ul li.' + initialLang + ' a[href="' + targetLinkId + '"]').addClass('current');
+                 } else if ($firstVisibleSection.length) {
+                      // If no hash, highlight and scroll to the first visible section
+                       $.scrollTo($firstVisibleSection, 0);
+                       $('#documenter_sidebar ul li.' + initialLang + ' a[href="#' + $firstVisibleSection.attr('id') + '"]').addClass('current');
                  } else {
-                     // If no sections are found or no hash, just highlight the first link in the sidebar
+                     // If no sections are found, just highlight the first link in the sidebar
                      $('#documenter_sidebar ul li.' + initialLang + ':first a').addClass('current');
                  }
 
+
                  // Trigger scroll after initial load to ensure correct highlighting
-                 $(window).trigger('scroll');
+                 // Use a small timeout to allow the browser to render after the initial scroll
+                 setTimeout(function() {
+                     $(window).trigger('scroll');
+                 }, 100); // Adjust timeout if needed
             }
 
 
@@ -812,7 +833,10 @@
 
                 // After changing language display, re-evaluate which sidebar link should be 'current'
                 // based on the current scroll position.
-                $(window).trigger('scroll');
+                 // Use a small timeout to allow elements to become visible before triggering scroll
+                setTimeout(function() {
+                     $(window).trigger('scroll');
+                }, 100); // Adjust timeout if needed
             }
 
             // Set initial language based on select value
