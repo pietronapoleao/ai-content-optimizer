@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - AI Content Optimizer </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+        /* Estilos baseados no layout fornecido e adaptados */
+        html {
+            background-color: #FFFFFF;
+            color: #383838;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0; /* Padding handled by container */
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex; /* Use flexbox for sidebar and content */
+            min-height: 100vh; /* Ensure body takes at least viewport height */
+        }
+
+        #documenter_sidebar {
+            width: 250px; /* Fixed width for sidebar */
+            background-color: #DDDDDD;
+            color: #222222;
+            padding: 20px;
+            flex-shrink: 0; /* Prevent sidebar from shrinking */
+            position: sticky; /* Make sidebar sticky */
+            top: 0; /* Stick to the top */
+            overflow-y: auto; /* Add scroll if content overflows */
+            max-height: 100vh; /* Limit height to viewport */
+            box-sizing: border-box;
+        }
+
+        #documenter_sidebar #documenter_logo {
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+			background:#0073aa;
+			color:#fff;
+        }
+
+        #documenter_sidebar #documenter_logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #documenter_sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid #AAAAAA;
+        }
+
+        #documenter_sidebar ul li {
+            margin: 0;
+        }
+
+        #documenter_sidebar ul a {
+            display: block;
+            padding: 10px; /* Adjusted padding for better click area */
+            text-decoration: none;
+            color: #444444;
+            border-bottom: 1px solid #AAAAAA;
+            border-top: 1px solid #EEEEEE;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+        }
+
+        /* Hover effect */
+        #documenter_sidebar ul a:hover {
+            background: #FFFFFF; /* White background on hover */
+            color: #0073aa; /* Blue text on hover */
+            border-top-color: #0073aa; /* Blue top border on hover */
+            border-bottom-color: #0073aa; /* Blue bottom border on hover */
+        }
+
+        /* Active item style */
+        #documenter_sidebar ul a.current {
+            background: #0073aa; /* Blue background for active item */
+            color: #FFFFFF; /* White text for active item */
+            border-top-color: #0073aa; /* Blue top border for active item */
+            border-bottom-color: #0073aa; /* Blue bottom border for active item */
+        }
+
+
+        #documenter_copyright {
+            margin-top: 30px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #777;
+        }
+
+        #documenter_content {
+            flex-grow: 1; /* Allow content to take remaining space */
+            padding: 30px;
+            max-width: calc(100% - 250px); /* Adjust max-width based on sidebar */
+            box-sizing: border-box;
+        }
+
+        .documentation-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px; /* Space between sections */
+        }
+
+        h1, h2, h3 {
+            color: #0073aa;
+            margin-top: 0; /* Removed top margin as sections have padding */
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em; /* Slightly smaller font for inline code */
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px; /* Increased padding */
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 20px; /* Space after code blocks */
+        }
+
+        pre code {
+             background-color: transparent; /* No background for code inside pre */
+             padding: 0;
+             border-radius: 0;
+             font-size: 1em; /* Normal font size inside pre */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* Space after tables */
+            table-layout: auto; /* Allow table layout to be automatic */
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background-color: #fff9c4; /* Light yellow */
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .button-example {
+            display: inline-block;
+            background-color: #0073aa;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .button-example:hover {
+            background-color: #005177;
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            margin-bottom: 20px;
+            text-align: right; /* Align to the right */
+        }
+
+        .language-selector label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        /* Language Content Toggle */
+        .lang-en { display: none; } /* Hide English content by default */
+        .lang-pt-BR { display: block; } /* Show Portuguese content by default */
+
+        /* Developer Icons Container */
+        .developer-icons {
+            display: flex; /* Use flexbox for horizontal layout */
+            gap: 15px; /* Space between icons */
+            margin-top: 15px;
+            flex-wrap: wrap; /* Allow icons to wrap on smaller screens */
+            justify-content: center; /* Center icons */
+        }
+
+        .developer-icons a {
+            display: inline-flex; /* Use inline-flex for button styling */
+            align-items: center; /* Center icon vertically */
+            justify-content: center; /* Center icon horizontally */
+            width: 40px; /* Fixed width for button */
+            height: 40px; /* Fixed height for button */
+            background-color: #0073aa; /* Blue background */
+            color: white; /* White icon */
+            border-radius: 50%; /* Make it round */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-size: 20px; /* Icon size */
+        }
+
+        .developer-icons a:hover {
+            background-color: #005177; /* Darker blue on hover */
+        }
+
+        /* Font Awesome icons inside developer buttons */
+        .developer-icons a .fa {
+            margin: 0; /* Remove default margin */
+            line-height: 1; /* Ensure icon is centered */
+            color: white; /* Ensure icon is white */
+        }
+
+
+        /* Estilos para a seção de Suporte */
+        .support-section {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* Rodapé no conteúdo principal */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+         /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column; /* Stack sidebar and content on small screens */
+            }
+
+            #documenter_sidebar {
+                width: 100%;
+                max-height: none; /* Remove max height */
+                position: static; /* Remove sticky positioning */
+                overflow-y: visible; /* Remove scroll */
+            }
+
+            #documenter_content {
+                max-width: 100%; /* Content takes full width */
+                padding: 20px; /* Adjust padding */
+            }
+
+             .documentation-section {
+                padding: 20px; /* Adjust section padding */
+            }
+
+            .language-selector {
+                text-align: center; /* Center language selector on small screens */
+            }
+
+            .developer-icons {
+                 justify-content: center; /* Center icons on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="documenter_sidebar">
+        <a href="#documenter_cover" id="documenter_logo">
+            <h2 style='color:#fff;'>AI Optimizer</h2>
+        </a>
+        <ul id="documenter_nav">
+            <li class="lang-pt-BR"><a href="#overview" title="Visão Geral">Visão Geral</a></li>
+            <li class="lang-pt-BR"><a href="#features" title="Funcionalidades Principais">Funcionalidades Principais</a></li>
+            <li class="lang-pt-BR"><a href="#installation" title="Instalação">Instalação</a></li>
+            <li class="lang-pt-BR"><a href="#configuration" title="Configuração">Configuração</a></li>
+            <li class="lang-pt-BR"><a href="#usage" title="Uso">Uso</a></li>
+            <li class="lang-pt-BR"><a href="#faq" title="FAQ">FAQ</a></li>
+            <li class="lang-pt-BR"><a href="#about-author" title="Sobre o Desenvolvedor">Sobre o Desenvolvedor</a></li>
+            <li class="lang-pt-BR"><a href="#support" title="Suporte">Suporte</a></li>
+
+            <li class="lang-en"><a href="#overview" title="Overview">Overview</a></li>
+            <li class="lang-en"><a href="#features" title="Key Features">Key Features</a></li>
+            <li class="lang-en"><a href="#installation" title="Installation">Installation</a></li>
+            <li class="lang-en"><a href="#configuration" title="Configuration">Configuration</a></li>
+            <li class="lang-en"><a href="#usage" title="Usage">Usage</a></li>
+            <li class="lang-en"><a href="#faq" title="FAQ">FAQ</a></li>
+            <li class="lang-en"><a href="#about-author" title="About the Developer">About the Developer</a></li>
+            <li class="lang-en"><a href="#support" title="Support">Support</a></li>
+        </ul>
+        <div id="documenter_copyright">@napoleaopietro<br>www.napoleao.site
+        </div>
+    </div>
+
+    <div id="documenter_content">
+
+        <div class="language-selector">
+            <label for="language-select">Idioma:</label>
+            <select id="language-select">
+                <option value="pt-BR" selected>Português (PT)</option>
+                <option value="en">English (EN)</option>
+            </select>
+        </div>
+
+        <section id="overview" class="documentation-section">
+             <div class="lang-pt-BR">
+                <h1>Visão Geral</h1>
+                <p>Bem-vindo à documentação do plugin <strong>AI Content Optimizer </strong>. Este plugin foi desenvolvido para ajudar você a otimizar o conteúdo do seu site WordPress, incluindo posts, produtos, páginas e Custom Post Types (CPTs), utilizando o poder da inteligência artificial Gemini para fornecer sugestões de SEO, títulos, subtítulos, descrições e palavras-chave.</p>
+                <p>Nosso objetivo é simplificar o processo de otimização de conteúdo, permitindo que você melhore o ranking do seu site nos motores de busca e atraia mais visitantes de forma eficiente.</p>
+             </div>
+             <div class="lang-en">
+                <h1>Overview</h1>
+                <p>Welcome to the documentation for the <strong>AI Content Optimizer </strong> plugin. This plugin was developed to help you optimize your WordPress website content, including posts, products, pages, and Custom Post Types (CPTs), using the power of Gemini artificial intelligence to provide suggestions for SEO, titles, subtitles, descriptions, and keywords.</p>
+                <p>Our goal is to simplify the content optimization process, allowing you to improve your website's search engine rankings and attract more visitors efficiently.</p>
+             </div>
+        </section>
+
+        <section id="features" class="documentation-section">
+             <div class="lang-pt-BR">
+                <h2>1. Funcionalidades Principais</h2>
+                <ul>
+                    <li><strong>Análise de Conteúdo com IA (Gemini):</strong> Analisa o conteúdo existente do seu post, página ou CPT para identificar oportunidades de otimização.</li>
+                    <li><strong>Sugestões de Palavras-chave:</strong> Receba sugestões de palavras-chave relevantes com base no seu conteúdo.</li>
+                    <li><strong>Sugestões de Títulos, Subtítulos e Descrições:</strong> Obtenha ideias para melhorar seus títulos, subtítulos e meta descrições para atrair mais tráfego.</li>
+                    <li><strong>Dashboard Intuitivo:</strong> Uma interface centralizada no painel de administração para gerenciar e otimizar todo o seu conteúdo.</li>
+                    <li><strong>Aplicação Direta de Sugestões:</strong> Aplique as sugestões de títulos, subtítulos, descrições e palavras-chave diretamente do dashboard ou da modal de sugestões.</li>
+                    <li><strong>Histórico de Análises:</strong> Acompanhe o histórico de análises realizadas para cada item de conteúdo.</li>
+                    <li><strong>Suporte a Posts, Páginas, Produtos e CPTs:</strong> Otimize diversos tipos de conteúdo no seu site.</li>
+                </ul>
+            </div>
+            <div class="lang-en">
+                <h2>1. Key Features</h2>
+                <ul>
+                    <li><strong>AI Content Analysis (Gemini):</strong> Analyzes the existing content of your post, page, or CPT to identify optimization opportunities.</li>
+                    <li><strong>Keyword Suggestions:</strong> Receive relevant keyword suggestions based on your content.</li>
+                    <li><strong>Title, Subtitle, and Description Suggestions:</strong> Get ideas to improve your titles, subtitles, and meta descriptions to attract more traffic.</li>
+                    <li><strong>Intuitive Dashboard:</strong> A centralized interface in the admin panel to manage and optimize all your content.</li>
+                    <li><strong>Direct Application of Suggestions:</strong> Apply title, subtitle, description, and keyword suggestions directly from the dashboard or the suggestions modal.</li>
+                    <li><strong>Analysis History:</strong> Track the history of analyses performed for each content item.</li>
+                    <li><strong>Support for Posts, Pages, Products, and CPTs:</strong> Optimize various types of content on your website.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="installation" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>2. Instalação</h2>
+                <p>Para instalar o plugin "AI Content Optimizer ", siga os passos abaixo:</p>
+
+                <h3>2.1 Upload via WordPress</h3>
+                <ol>
+                    <li>Faça o download do arquivo <code>.zip</code> do plugin.</li>
+                    <li>No painel de administração do WordPress, navegue até <strong>Plugins > Adicionar Novo</strong>.</li>
+                    <li>Clique no botão <strong>Enviar Plugin</strong>.</li>
+                    <li>Clique em <strong>Escolher arquivo</strong> e selecione o arquivo <code>.zip</code> que você baixou.</li>
+                    <li>Clique em <strong>Instalar Agora</strong>.</li>
+                    <li>Após a instalação, clique em <strong>Ativar Plugin</strong>.</li>
+                </ol>
+
+                <h3>2.2 Upload via FTP</h3>
+                <ol>
+                    <li>Faça o download do arquivo <code>.zip</code> do plugin e extraia-o para uma pasta no seu computador.</li>
+                    <li>Conecte-se ao seu servidor via FTP.</li>
+                    <li>Navegue até o diretório <code>wp-content/plugins/</code>.</li>
+                    <li>Faça o upload da pasta extraída do plugin para este diretório.</li>
+                    <li>No painel de administração do WordPress, navegue até <strong>Plugins > Plugins Instalados</strong>.</li>
+                    <li>Encontre "AI Content Optimizer " na lista e clique em <strong>Ativar</strong>.</li>
+                </ol>
+            </div>
+            <div class="lang-en">
+                 <h2>2. Installation</h2>
+                <p>To install the "AI Content Optimizer " plugin, follow the steps below:</p>
+
+                <h3>2.1 Upload via WordPress</h3>
+                <ol>
+                    <li>Download the plugin's <code>.zip</code> file.</li>
+                    <li>In the WordPress admin panel, navigate to <strong>Plugins > Add New</strong>.</li>
+                    <li>Click the <strong>Upload Plugin</strong> button.</li>
+                    <li>Click <strong>Choose File</strong> and select the <code>.zip</code> file you downloaded.</li>
+                    <li>Click <strong>Install Now</strong>.</li>
+                    <li>After installation, click <strong>Activate Plugin</strong>.</li>
+                </ol>
+
+                <h3>2.2 Upload via FTP</h3>
+                <ol>
+                    <li>Faça o download do arquivo <code>.zip</code> do plugin e extraia-o para uma pasta no seu computador.</li>
+                    <li>Conecte-se ao seu servidor via FTP.</li>
+                    <li>Navegue até o diretório <code>wp-content/plugins/</code>.</li>
+                    <li>Upload the extracted plugin folder to this directory.</li>
+                    <li>In the WordPress admin panel, navigate to <strong>Plugins > Installed Plugins</strong>.</li>
+                    <li>Find "AI Content Optimizer " in the list and click <strong>Activate</strong>.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="configuration" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>3. Configuração</h2>
+                <p>Após a instalação e ativação, você precisará configurar a chave da API Gemini:</p>
+                <ol>
+                    <li>No painel de administração do WordPress, navegue até <strong>AI Optimizer > Settings</strong>.</li>
+                    <li>Localize o campo para a <strong class="highlight">Chave da API Gemini</strong>.</li>
+                    <li>Insira sua chave da API Gemini válida neste campo.</li>
+                    <li>Clique em <strong>Salvar Alterações</strong>.</li>
+                </ol>
+
+                <h3>Como obter uma Chave da API Gemini:</h3>
+                <p>Você pode obter uma chave da API Gemini através da <a href="https://ai.google.dev/" target="_blank">Google AI for Developers</a>. Siga as instruções na documentação oficial do Google para gerar sua chave.</p>
+            </div>
+            <div class="lang-en">
+                <h2>3. Configuration</h2>
+                <p>After installation and activation, you will need to configure the Gemini API key:</p>
+                <ol>
+                    <li>In the WordPress admin panel, navigate to <strong>AI Optimizer > Settings</strong>.</li>
+                    <li>Locate the field for the <strong class="highlight">Gemini API Key</strong>.</li>
+                    <li>Enter your valid Gemini API key in this field.</li>
+                    <li>Click <strong>Save Changes</strong>.</li>
+                </ol>
+
+                <h3>How to obtain a Gemini API Key:</h3>
+                <p>You can obtain a Gemini API key through <a href="https://ai.google.dev/" target="_blank">Google AI for Developers</a>. Follow the instructions in the official Google documentation to generate your key.</p>
+            </div>
+        </section>
+
+        <section id="usage" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>4. Uso</h2>
+                <p>Acesse o dashboard do plugin para começar a otimizar seu conteúdo:</p>
+                <ol>
+                    <li>No painel de administração do WordPress, navegue até <strong>AI Optimizer > AI Optimizer</strong>.</li>
+                    <li>Você verá abas para diferentes tipos de conteúdo (Publicações, Produtos, Páginas e CPTs). Clique na aba desejada.</li>
+                    <li>A tabela exibirá uma lista do seu conteúdo. Para cada item, você verá:
+                        <ul>
+                            <li><strong>Conteúdo:</strong> O título do post, página ou CPT.</li>
+                            <li><strong>Tipo:</strong> O tipo de conteúdo (Post, Página, Produto, etc.).</li>
+                            <li><strong>Qtd:</strong> O número de análises já realizadas para este item.</li>
+                            <li><strong>Última Análise:</strong> A data e hora da última análise.</li>
+                            <li><strong>Status da Análise:</strong> O status atual da análise.</li>
+                            <li><strong>Ação:</strong> Botões para interagir com o conteúdo.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>4.1 Botões de Ação</h3>
+                <ul>
+                    <li><strong>Botão Analisar (<span class="dashicons-example dashicons-search"></span>):</strong> Clique neste botão para iniciar uma nova análise de conteúdo para o item específico. O status na tabela será atualizado para "Analisando..." e, ao final, para "Analisado" ou "Erro na Análise".</li>
+                    <li><strong>Botão Ver Informações Atuais (<span class="dashicons-example dashicons-info-outline"></span>):</strong> Clique neste botão para abrir uma modal exibindo as informações atuais do conteúdo (título, subtítulo, descrição, palavras-chave).</li>
+                    <li><strong>Botão Ver Histórico de Análises (<span class="dashicons-example dashicons-backup"></span>):</strong> Clique neste botão para abrir uma modal exibindo o histórico de análises realizadas para este item de conteúdo.</li>
+                </ul>
+
+                <h3>4.2 Resultados da Análise</h3>
+                <p>Após clicar no botão "Analisar", a seção "Resultados da Análise por IA" aparecerá abaixo das abas.</p>
+                <ul>
+                    <li><strong>Coluna Esquerda:</strong> Exibe as "Palavras-chave Sugeridas" em uma tabela, incluindo a quantidade estimada de "Buscas/mês".</li>
+                    <li><strong>Coluna Direita:</strong> Exibe "Títulos, Subtítulos e Descrições" sugeridos em uma tabela, também com a quantidade estimada de "Buscas/mês".</li>
+                </ul>
+
+                <h3>4.3 Modal de Sugestões Detalhadas</h3>
+                <p>Clique no botão <strong class="highlight">🚀 Gemini (<span class="dashicons-example dashicons-visibility"></span>)</strong> na seção "Resultados da Análise por IA" para abrir a modal de sugestões detalhadas. Esta modal oferece:</p>
+                <ul>
+                    <li><strong>Sugestões de Palavras-chave:</strong> Uma lista de palavras-chave sugeridas. Você pode clicar no botão "Utilizar Todas as Palavras-chave Sugeridas" para adicioná-las como tags ao seu post (se o tipo de conteúdo suportar tags). Palavras-chave já aplicadas serão destacadas.</li>
+                    <li><strong>Sugestões de Títulos:</strong> Uma tabela com títulos sugeridos, a quantidade de "Buscas/mês" e um botão "Usar" para aplicar o título diretamente ao seu post/página/CPT. Títulos já aplicados serão destacados.</li>
+                    <li><strong>Sugestões de Subtítulos:</strong> Uma tabela com subtítulos sugeridos, a quantidade de "Buscas/mês" e um botão "Usar" para aplicar o subtítulo. Subtítulos já aplicados serão destacados.</li>
+                    <li><strong>Sugestões de Descrição:</strong> Uma lista de descrições sugeridas com um botão "Usar esta Descrição" para aplicar a descrição ao conteúdo principal do seu post/página/CPT. Descrições que parecem já estar no conteúdo serão destacadas (basado em uma verificação simples dos primeiros 100 caracteres).</li>
+                </ul>
+                <p>Ao clicar nos botões "Usar" ou "Utilizar Todas as Palavras-chave Sugeridas", o plugin fará uma requisição AJAX para atualizar o conteúdo do seu post/página/CPT no banco de dados.</p>
+            </div>
+            <div class="lang-en">
+                <h2>4. Usage</h2>
+                <p>Access the plugin dashboard to start optimizing your content:</p>
+                <ol>
+                    <li>In the WordPress admin panel, navigate to <strong>AI Optimizer > AI Optimizer</strong>.</li>
+                    <li>You will see tabs for different content types (Posts, Products, Pages, and CPTs). Click on the desired tab.</li>
+                    <li>The table will display a list of your content. For each item, you will see:
+                        <ul>
+                            <li><strong>Content:</strong> The title of the post, page, or CPT.</li>
+                            <li><strong>Type:</strong> The content type (Post, Page, Product, etc.).</li>
+                            <li><strong>Qty:</strong> The number of analyses already performed for this item.</li>
+                            <li><strong>Last Analysis:</strong> The date and time of the last analysis.</li>
+                            <li><strong>Analysis Status:</strong> The current status of the analysis.</li>
+                            <li><strong>Action:</strong> Buttons to interact with the content.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>4.1 Action Buttons</h3>
+                <ul>
+                    <li><strong>Analyze Button (<span class="dashicons-example dashicons-search"></span>):</strong> Click this button to start a new content analysis for the specific item. The status in the table will update to "Analyzing..." and, upon completion, to "Analyzed" or "Analysis Error".</li>
+                    <li><strong>View Current Info Button (<span class="dashicons-example dashicons-info-outline"></span>):</strong> Click this button to open a modal displaying the current content information (title, subtitle, description, keywords).</li>
+                    <li><strong>View History Button (<span class="dashicons-example dashicons-backup"></span>):</strong> Click this button to open a modal displaying the history of analyses performed for this content item.</li>
+                </ul>
+
+                <h3>4.2 Analysis Results</h3>
+                <p>After clicking the "Analyze" button, the "AI Analysis Results" section will appear below the tabs.</p>
+                <ul>
+                    <li><strong>Left Column:</strong> Displays "Suggested Keywords" in a table, including the estimated "Searches/month".</li>
+                    <li><strong>Right Column:</strong> Displays suggested "Titles, Subtitles, and Descriptions" in a table, also with the estimated "Searches/month".</li>
+                </ul>
+
+                <h3>4.3 Detailed Suggestions Modal</h3>
+                <p>Click the <strong class="highlight">🚀 Gemini (<span class="dashicons-example dashicons-visibility"></span>)</strong> button in the "AI Analysis Results" section to open the detailed suggestions modal. This modal offers:</p>
+                <ul>
+                    <li><strong>Keyword Suggestions:</strong> A list of suggested keywords. You can click the "Use All Suggested Keywords" button to add them as tags to your post (if the content type supports tags). Applied keywords will be highlighted.</li>
+                    <li><strong>Title Suggestions:</strong> A table with suggested titles, the number of "Searches/month", and a "Use" button to apply the title directly to your post/page/CPT. Applied titles will be highlighted.</li>
+                    <li><strong>Subtitle Suggestions:</strong> A table with suggested subtitles, the number of "Searches/month", and a "Use" button to apply the subtitle. Applied subtitles will be highlighted.</li>
+                    <li><strong>Description Suggestions:</strong> A list of descriptions suggested with a "Use This Description" button to apply the description to the main content of your post/page/CPT. Descriptions that appear to be already in the content will be highlighted (based on a simple check of the first 100 characters).</li>
+                </ul>
+                <p>By clicking the "Use" or "Use All Suggested Keywords" buttons, the plugin will make an AJAX request to update your post/page/CPT content in the database.</p>
+            </div>
+        </section>
+
+        <section id="faq" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>5. Perguntas Frequentes (FAQ)</h2>
+                <ul>
+                    <li><strong>O plugin funciona com qualquer tema?</strong> Sim, o plugin opera no painel de administração do WordPress e não interfere diretamente com o frontend do seu site ou com o tema utilizado.</li>
+                    <li><strong>Preciso ter conhecimentos de programação para usar o plugin?</strong> Não, o plugin é projetado para ser fácil de usar através da interface do painel de administração.</li>
+                    <li><strong>O plugin armazena minha chave da API Gemini de forma segura?</strong> Sim, a chave da API é armazenada nas configurações do WordPress e deve ser tratada com segurança.</li>
+                    <li><strong>O que acontece se a API Gemini retornar um erro?</strong> O plugin exibirá uma mensagem de erro no dashboard. Verifique sua chave da API e as configurações.</li>
+                    <li><strong>Posso analisar Custom Post Types?</strong> Sim, o plugin lista e permite analisar CPTs públicos registrados no seu site.</li>
+                </ul>
+            </div>
+            <div class="lang-en">
+                <h2>5. Frequently Asked Questions (FAQ)</h2>
+                <ul>
+                    <li><strong>Does the plugin work with any theme?</strong> Yes, the plugin operates in the WordPress admin panel and does not directly interfere with your website's frontend or the theme used.</li>
+                    <li><strong>Do I need programming knowledge to use the plugin?</strong> No, the plugin is designed to be easy to use through the admin panel interface.</li>
+                    <li><strong>Does the plugin store my Gemini API key securely?</strong> Yes, the API key is stored in WordPress settings and should be treated securely.</li>
+                    <li><strong>What happens if the Gemini API returns an error?</strong> The plugin will display an error message on the dashboard. Check your API key and settings.</li>
+                    <li><strong>Can I analyze Custom Post Types?</strong> Yes, the plugin lists and allows you to analyze public CPTs registered on your website.</li>
+                </ul>
+            </div>
+        </section>
+
+         <section id="about-author" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>Sobre o Desenvolvedor</h2>
+                <p>Este plugin foi desenvolvido por <strong>Petrocele Napoleão</strong>.</p>
+                <p>Petrocele é um desenvolvedor com experiência em WordPress e otimização de conteúdo, apaixonado por utilizar novas tecnologias, como inteligência artificial, para criar soluções eficientes e inovadoras para o ecossistema WordPress.</p>
+                <div class="developer-icons">
+                    <a href="https://napoleao.site" target="_blank" title="Website (Português)" class="developer-website-pt">
+                         <span class="fa fa-globe"></span>
+                    </a>
+                     <a href="https://en.napoleao.site" target="_blank" title="Website (English)" class="developer-website-en">
+                         <span class="fa fa-globe"></span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/napoleaopietro" target="_blank" title="LinkedIn">
+                         <span class="fa fa-linkedin-square"></span> </a>
+
+                    <a href="https://www.instagram.com/napoleaopietro/" target="_blank" title="Instagram">
+                         <span class="fa fa-instagram"></span> </a>
+
+                    <a href="https://github.com/pietronapoleao" target="_blank" title="GitHub">
+                         <span class="fa fa-github"></span> </a>
+
+                     <a href="https://www.youtube.com/@napoleaopietro" target="_blank" title="YouTube">
+                         <span class="fa fa-youtube-play"></span> </a>
+                </div>
+            </div>
+             <div class="lang-en">
+                <h2>About the Developer</h2>
+                <p>This plugin was developed by <strong>Petrocele Napoleão</strong>.</p>
+                <p>Petrocele is a developer with experience in WordPress and content optimization, passionate about using new technologies, such as artificial intelligence, to create efficient and innovative solutions for the WordPress ecosystem.</p>
+                 <div class="developer-icons">
+                    <a href="https://napoleao.site" target="_blank" title="Website (Portuguese)" class="developer-website-pt">
+                         <span class="fa fa-globe"></span>
+                    </a>
+                     <a href="https://en.napoleao.site" target="_blank" title="Website (English)" class="developer-website-en">
+                         <span class="fa fa-globe"></span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/napoleaopietro" target="_blank" title="LinkedIn">
+                         <span class="fa fa-linkedin-square"></span> </a>
+                    <a href="https://www.instagram.com/napoleaopietro/" target="_blank" title="Instagram">
+                         <span class="fa fa-instagram"></span> </a>
+                    <a href="https://github.com/pietronapoleao" target="_blank" title="GitHub">
+                         <span class="fa fa-github"></span> </a>
+                     <a href="https://www.youtube.com/@napoleaopietro" target="_blank" title="YouTube">
+                         <span class="fa fa-youtube-play"></span> </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="documentation-section">
+            <div class="lang-pt-BR">
+                <h2>6. Suporte</h2>
+                <p>Se você encontrar qualquer problema ou tiver dúvidas sobre o uso do plugin, por favor, entre em contato através do canal de suporte oficial. Forneça o máximo de detalhes possível sobre o problema, incluindo capturas de tela e mensagens de erro, se aplicável.</p>
+            </div>
+             <div class="lang-en">
+                <h2>6. Support</h2>
+                <p>If you encounter any issues or have questions about using the plugin, please contact us through the official support channel. Provide as many details as possible about the problem, including screenshots and error messages, if applicable.</p>
+            </div>
+        </section>
+
+
+        <div class="footer">
+            <p>Copyright © <?php echo date('Y'); ?> AI Content Optimizer.Todos os direitos reservados.</p>
+        </div>
+
+    </div>
+
+    <script>
+        jQuery(document).ready(function($) {
+            // Smooth scrolling for sidebar navigation
+            $('#documenter_nav a').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+
+                // Remove 'current' from all links in both languages
+                $('#documenter_nav a').removeClass('current');
+                // Add 'current' to the clicked link (will apply to the visible one)
+                $(this).addClass('current');
+
+                $.scrollTo(target, 800, {
+                    easing: 'swing', // Use 'swing' or 'linear' or other easing if available
+                    offset: -30 // Adjusted offset for potential language selector height
+                });
+            });
+
+             // Highlight current item on scroll
+            $(window).on('scroll', function() {
+                var scrollPos = $(document).scrollTop();
+                var windowHeight = $(window).height();
+                var buffer = 50; // Adjust this buffer as needed
+
+                // Determine the currently active language
+                var activeLang = $('#language-select').val();
+                var $sections = $('#documenter_content section:visible'); // Get only visible sections
+
+                // Find the section closest to the top of the viewport
+                var currentSectionId = null;
+                $sections.each(function() {
+                    var sectionTop = $(this).offset().top;
+                    var sectionBottom = sectionTop + $(this).outerHeight();
+
+                    // If the top of the section is within the buffer from the top of the viewport
+                    // or if the section spans across the top of the viewport
+                    if (sectionTop - buffer <= scrollPos && sectionBottom > scrollPos + buffer) {
+                         currentSectionId = $(this).attr('id');
+                         return false; // Exit the loop once the first matching section is found
+                    }
+                     // If the user is at the very bottom of the page and the last section is visible
+                     if (scrollPos + windowHeight >= $(document).height() && $(this).is($sections.last())) {
+                         currentSectionId = $(this).attr('id');
+                         return false; // Highlight the last section if at the bottom
+                     }
+                });
+
+                // If a current section is identified, highlight the corresponding menu item
+                if (currentSectionId) {
+                    // Remove 'current' from all links in the active language
+                     $('#documenter_sidebar ul li.' + activeLang + ' a').removeClass('current');
+                    // Add 'current' to the current visible link
+                     $('#documenter_sidebar ul li.' + activeLang + ' a[href="#' + currentSectionId + '"]').addClass('current');
+                } else {
+                    // If no section is in view (e.g., at the very top before the first section),
+                    // highlight the first menu item.
+                     if (scrollPos < $sections.first().offset().top - buffer) {
+                         $('#documenter_sidebar ul li.' + activeLang + ' a').removeClass('current');
+                         $('#documenter_sidebar ul li.' + activeLang + ':first a').addClass('current');
+                     }
+                }
+            });
+
+
+            // Set initial current item on page load
+            const initialLang = $('#language-select').val();
+            const initialHash = window.location.hash;
+
+            // Function to set initial highlight and scroll
+            function setInitialHighlightAndScroll() {
+                 // Determine the target section based on hash or the first visible section
+                 var $firstVisibleSection = $('#documenter_content section:visible:first');
+                 var targetSection = initialHash ? $(initialHash) : $firstVisibleSection;
+                 var targetLinkId = initialHash ? initialHash : ($firstVisibleSection.length ? '#' + $firstVisibleSection.attr('id') : null);
+
+
+                 if (targetSection.length && targetLinkId) {
+                     // Scroll to the target section
+                     $.scrollTo(targetSection, 0);
+
+                     // Highlight the corresponding link in the initial language
+                     $('#documenter_sidebar ul li.' + initialLang + ' a[href="' + targetLinkId + '"]').addClass('current');
+                 } else {
+                     // If no sections are found or no hash, just highlight the first link in the sidebar
+                     $('#documenter_sidebar ul li.' + initialLang + ':first a').addClass('current');
+                 }
+
+                 // Trigger scroll after initial load to ensure correct highlighting
+                 $(window).trigger('scroll');
+            }
+
+
+            // Language Switcher
+            const languageSelect = $('#language-select');
+            const portugueseContent = $('.lang-pt-BR');
+            const englishContent = $('.lang-en');
+            const websiteLinkPT = $('.developer-website-pt');
+            const websiteLinkEN = $('.developer-website-en');
+            const sidebarItemsPT = $('#documenter_sidebar ul li.lang-pt-BR');
+            const sidebarItemsEN = $('#documenter_sidebar ul li.lang-en');
+
+
+            function updateLanguageDisplay(selectedLang) {
+                if (selectedLang === 'pt-BR') {
+                    portugueseContent.show();
+                    englishContent.hide();
+                    sidebarItemsPT.show(); // Show Portuguese sidebar items
+                    sidebarItemsEN.hide(); // Hide English sidebar items
+                    websiteLinkPT.show();
+                    websiteLinkEN.hide();
+                } else if (selectedLang === 'en') {
+                    portugueseContent.hide();
+                    englishContent.show();
+                    sidebarItemsPT.hide(); // Hide Portuguese sidebar items
+                    sidebarItemsEN.show(); // Show English sidebar items
+                    websiteLinkPT.hide();
+                    websiteLinkEN.show();
+                }
+
+                // Remove 'current' class from all links in both languages
+                $('#documenter_nav a').removeClass('current');
+
+                // After changing language display, re-evaluate which sidebar link should be 'current'
+                // based on the current scroll position.
+                $(window).trigger('scroll');
+            }
+
+            // Set initial language based on select value
+            updateLanguageDisplay(languageSelect.val());
+
+            // Handle language change
+            languageSelect.on('change', function() {
+                const selectedLang = $(this).val();
+                updateLanguageDisplay(selectedLang);
+                 // Optional: Update URL hash to include language preference
+                 // window.location.hash = selectedLang;
+            });
+
+             // Call setInitialHighlightAndScroll after the DOM is ready and initial language is set
+             setInitialHighlightAndScroll();
+
+
+        });
+    </script>
+
+</body>
+</html>
