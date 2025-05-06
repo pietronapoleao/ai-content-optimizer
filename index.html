@@ -281,6 +281,25 @@
             font-size: 0.9em;
             color: #777;
         }
+'	/* Responsive iframe container for YouTube */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000; /* Fallback background */
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
 
          /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -312,6 +331,7 @@
                  justify-content: center; /* Center icons on small screens */
             }
         }
+        
     </style>
 </head>
 <body>
@@ -321,6 +341,7 @@
             <h2 style='color:#fff;'>AI Optimizer</h2>
         </a>
         <ul id="documenter_nav">
+	    <li class="lang-pt-BR"><a href="#demo" title="Demonstração">Demonstração</a></li>
             <li class="lang-pt-BR"><a href="#overview" title="Visão Geral">Visão Geral</a></li>
             <li class="lang-pt-BR"><a href="#features" title="Funcionalidades Principais">Funcionalidades Principais</a></li>
             <li class="lang-pt-BR"><a href="#installation" title="Instalação">Instalação</a></li>
@@ -329,7 +350,8 @@
             <li class="lang-pt-BR"><a href="#faq" title="FAQ">FAQ</a></li>
             <li class="lang-pt-BR"><a href="#about-author" title="Sobre o Desenvolvedor">Sobre o Desenvolvedor</a></li>
             <li class="lang-pt-BR"><a href="#support" title="Suporte">Suporte</a></li>
-
+	    
+	    <li class="lang-en"><a href="#demo" title="Demo">Demo</a></li>
             <li class="lang-en"><a href="#overview" title="Overview">Overview</a></li>
             <li class="lang-en"><a href="#features" title="Key Features">Key Features</a></li>
             <li class="lang-en"><a href="#installation" title="Installation">Installation</a></li>
@@ -352,6 +374,22 @@
                 <option value="en">English (EN)</option>
             </select>
         </div>
+	<section id="demo" class="documentation-section">
+             <div class="lang-pt-BR">
+                <h1>Demonstração</h1>
+                <p>Assista ao vídeo abaixo para uma demonstração rápida de como utilizar o plugin AI Content Optimizer - Gemini Only e suas funcionalidades principais.</p>
+                 <div class="video-container">
+                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                 </div>
+             </div>
+             <div class="lang-en">
+                <h1>Demo</h1>
+                <p>Watch the video below for a quick demonstration of how to use the AI Content Optimizer - Gemini Only plugin and its key features.</p>
+                 <div class="video-container">
+                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                 </div>
+             </div>
+        </section>
 
         <section id="overview" class="documentation-section">
              <div class="lang-pt-BR">
